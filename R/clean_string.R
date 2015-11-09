@@ -31,4 +31,6 @@ clean_string <- function(x) {
     gsub("\\<\\!\\[CDATA(.*?)\\>", "", ., perl = TRUE) %>%
     gsub("\\<(.*?)\\>|\\n|\\t|nbsp;|&amp;", "", ., perl = TRUE)
   
+  return(y)
+  
 }
