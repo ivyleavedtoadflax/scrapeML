@@ -7,9 +7,11 @@
 #'   error messages
 #'   
 #' @param x \code{x} A url as a character string.
-#' @param x \code{dest} A local file destination for the url to be saved to.
+#' @param dest \code{dest} A local file destination for the url to be saved to.
+#' @param sleep \code{sleep} Time in seconds to wait at the end of each request.
 #'   
-#' @return A character string of either \code{"success"} or a simplified error or warning message, or \code{"unhandled error"}/\code{"unhandled warning"}.
+#' @return A character string of either \code{"success"} or a simplified error
+#'   or warning message, or \code{"unhandled error"}/\code{"unhandled warning"}.
 #'   
 #' @examples
 #' 
@@ -20,7 +22,7 @@
 #' @export
 
 
-get_url <- function(site_url, dest) {
+get_url <- function(site_url, dest, sleep = 0.5) {
   
   ## Deal with any errors in the inputs
   
@@ -89,6 +91,7 @@ get_url <- function(site_url, dest) {
     },
     finally = {
       
+      Sys.sleep(sleep)
     }
   )
 }

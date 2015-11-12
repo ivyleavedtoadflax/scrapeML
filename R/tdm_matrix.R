@@ -20,24 +20,28 @@
 tdm_matrix <- function(source_dir, stemming = FALSE) {
   
   
-  mycorpus <- Corpus(DirSource(source_dir)) %>%
-    tm_map(stripWhitespace) %>% 
+  mycorpus <- tm::Corpus(tm::DirSource(source_dir)) %>%
+    tm::tm_map(tm::stripWhitespace) %>% 
     #tm_map(tolower) %>% ## breaks it!
-    tm_map(removeWords, stopwords("english")) %>% 
-    tm_map(removePunctuation) %>%
-    tm_map(removeNumbers) 
+    tm::tm_map(tm::removeWords, tm::stopwords("english")) %>% 
+    tm::tm_map(tm::removePunctuation) %>%
+    tm::tm_map(tm::removeNumbers) 
   
   if (stemming == TRUE) {
    
     mycorpus <- mycorpus %>%
-      tm_map(stemDocument)
+      tm::tm_map(stemDocument)
      
   }
   
-  tdm <- TermDocumentMatrix(mycorpus)
-  m <- as.matrix(tdm)
-  d <- m %>% 
-    as.data.frame(row.names = row.names(m))
+  dtm <- tm::DocumentTermMatrix(mycorpus)
+  m <- as.matrix(dtm)
+  m_names <- row.names(m)
+  d <- m %>%
+    as.data.frame %>%
+    cbind(
+      document = m_names, .
+      )
   
   return(d)
   

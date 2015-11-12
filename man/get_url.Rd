@@ -4,15 +4,18 @@
 \alias{get_url}
 \title{Get URL}
 \usage{
-get_url(site_url, dest)
+get_url(site_url, dest, sleep = 0.5)
 }
 \arguments{
-\item{x}{\code{x} A url as a character string.}
+\item{dest}{\code{dest} A local file destination for the url to be saved to.}
 
-\item{x}{\code{dest} A local file destination for the url to be saved to.}
+\item{sleep}{\code{sleep} Time in seconds to wait at the end of each request.}
+
+\item{x}{\code{x} A url as a character string.}
 }
 \value{
-A character string of either \code{"success"} or a simplified error or warning message, or \code{"unhandled error"}/\code{"unhandled warning"}.
+A character string of either \code{"success"} or a simplified error
+  or warning message, or \code{"unhandled error"}/\code{"unhandled warning"}.
 }
 \description{
 \code{get_url} download requested url with elegant error 

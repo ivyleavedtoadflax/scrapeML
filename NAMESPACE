@@ -2,4 +2,6 @@
 
 export(clean_string)
 export(get_url)
+export(parse_html)
 export(tdm_matrix)
+importFrom(magrittr,"%>%")
