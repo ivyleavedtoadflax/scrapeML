@@ -3,12 +3,15 @@ Title: What the Package Does (one line, title case)
 Version: 0.1.0
 Authors@R: person("Matthew", "Upson", , "matthew.upson@education.gsi.gov.uk", role = c("aut", "cre"))
 Description: What the package does (one paragraph)
-Depends: R (>= 3.2.1)
+Depends:
+    R (>= 3.2.1)
 License: What license is it under?
 LazyData: true
-Imports: dplyr,
+Imports:
+    dplyr,
     magrittr,
     readr,
     XML,
     httr,
     tm
+RoxygenNote: 5.0.0
