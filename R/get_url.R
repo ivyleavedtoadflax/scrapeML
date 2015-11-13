@@ -92,7 +92,6 @@ get_url <- function(site_url, dest, sleep = 0.5) {
         warn <- "success (length warning)"
         
         message(warn)
-        message("Check connection and try again")
       }
       
       return(warn)
