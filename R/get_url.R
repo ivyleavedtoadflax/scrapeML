@@ -25,11 +25,12 @@
 get_url <- function(site_url, dest, sleep = 0.5) {
   
   ## Deal with any errors in the inputs
+  ## Note that if this fails it causes problems!
   
   stopifnot(
     class(site_url) == "character",
     length(site_url) == 1,
-    substr(site_url, 1, 7) == "http://",
+    #substr(site_url, 1, 7) == "http://",
     class(dest) == "character",
     length(dest) == 1
   )
@@ -86,6 +87,13 @@ get_url <- function(site_url, dest, sleep = 0.5) {
         message("Check connection and try again")
       }
       
+      if (grepl("downloaded\\slength\\s\\d+\\s\\!\\=\\sreported\\slength\\s\\d+", cond)) {
+        
+        warn <- "success (length warning)"
+        
+        message(warn)
+        message("Check connection and try again")
+      }
       
       return(warn)
     },
