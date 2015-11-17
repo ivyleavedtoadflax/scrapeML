@@ -26,6 +26,8 @@ get_url <- function(site_url, dest, sleep = 0.5) {
   
   ## Deal with any errors in the inputs
   ## Note that if this fails it causes problems!
+  ## Perhaps should be handled in the tryCatch as will raise an error
+  ## that can be handled elegantly.
   
   stopifnot(
     class(site_url) == "character",
