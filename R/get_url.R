@@ -30,7 +30,6 @@ get_url <- function(site_url, dest, sleep = 0.5) {
   stopifnot(
     class(site_url) == "character",
     length(site_url) == 1,
-    #substr(site_url, 1, 7) == "http://",
     class(dest) == "character",
     length(dest) == 1
   )
