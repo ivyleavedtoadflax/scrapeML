@@ -43,7 +43,10 @@ get_url <- function(site_url, dest, sleep = 0.5) {
     {
       
       if (is.na(site_url) {
-        return("No link")
+      
+        message("No link provided")
+        return("no link")
+        
       } else {
       
       ## Try to download the file
