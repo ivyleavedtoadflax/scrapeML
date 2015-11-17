@@ -42,6 +42,10 @@ get_url <- function(site_url, dest, sleep = 0.5) {
   tryCatch(
     {
       
+      if (is.na(site_url) {
+        return("No link")
+      } else {
+      
       ## Try to download the file
       
       download.file(
@@ -55,7 +59,7 @@ get_url <- function(site_url, dest, sleep = 0.5) {
       ## Return success
       return("success")
       # write_log()
-      
+      }
     },
     error = function(cond) {
       message(paste("Error in get_Url():"))
@@ -119,8 +123,9 @@ get_url <- function(site_url, dest, sleep = 0.5) {
       return(warn)
     },
     finally = {
-      
+
       Sys.sleep(sleep)
+      
     }
   )
 }
