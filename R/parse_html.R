@@ -19,7 +19,12 @@
 
 parse_html <- function(x) {
   
-  x %>% readr::read_lines %>%
+  ## For some reason call readr::read_lines will fail if it is piped. Although
+  ## read_lines works..?
+  
+  x <- readr::read_lines(x)
+  
+  x %>%
     XML::htmlParse(encoding = "UTF8") %>%
     return
 
