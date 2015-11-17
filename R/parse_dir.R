@@ -17,7 +17,7 @@
 #'
 #' @export
 
-parse_html <- function(source_dir, dest_dir) {
+parse_dir <- function(source_dir, dest_dir) {
   
   stopifnot(
     dir.exists(source_dir)
