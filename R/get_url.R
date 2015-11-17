@@ -42,7 +42,7 @@ get_url <- function(site_url, dest, sleep = 0.5) {
   tryCatch(
     {
       
-      if (is.na(site_url) {
+      if (is.na(site_url)) {
       
         message("No link provided")
         return("no link")
