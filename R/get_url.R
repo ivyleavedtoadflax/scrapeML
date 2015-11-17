@@ -67,7 +67,7 @@ get_url <- function(site_url, dest, sleep = 0.5) {
         warn <- "invalid URL"
         
         message(warn)
-      }      
+      } 
       
       return(warn)
     },
@@ -91,6 +91,27 @@ get_url <- function(site_url, dest, sleep = 0.5) {
         warn <- "success (length warning)"
         
         message(warn)
+      }
+      
+      if (grepl("503 Service Unavailable", cond)) {
+        
+        warn <- "503 Error"
+        
+        message(warn)
+      }
+      
+      if (grepl("404 Not Found", cond)) {
+        
+        warn <- "404 Error"
+        
+        message(warn)
+      }
+      
+      if (grepl("The operation timed out", cond)) {
+        
+      warn <- "timed out"
+        
+      message(warn)
       }
       
       return(warn)
