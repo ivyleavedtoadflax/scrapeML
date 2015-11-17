@@ -3,5 +3,6 @@
 export(clean_string)
 export(get_url)
 export(parse_html)
+export(priority_match)
 export(tdm_matrix)
 importFrom(magrittr,"%>%")

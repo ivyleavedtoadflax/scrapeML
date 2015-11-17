@@ -38,11 +38,13 @@ tdm_matrix <- function(source_dir, stemming = FALSE) {
   m <- as.matrix(dtm)
   m_names <- row.names(m)
   d <- m %>%
-    as.data.frame %>%
-    cbind(
-      document = m_names, .
-      )
+    as.data.frame 
   
+#   %>%
+#     cbind(
+#       document = m_names, .
+#       )
+#   
   return(d)
   
 }
