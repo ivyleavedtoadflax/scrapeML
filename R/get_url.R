@@ -26,11 +26,12 @@ get_url <- function(site_url, dest, sleep = 0.5) {
   
   ## Deal with any errors in the inputs
   ## Note that if this fails it causes problems!
+  ## Perhaps should be handled in the tryCatch as will raise an error
+  ## that can be handled elegantly.
   
   stopifnot(
     class(site_url) == "character",
     length(site_url) == 1,
-    #substr(site_url, 1, 7) == "http://",
     class(dest) == "character",
     length(dest) == 1
   )
@@ -40,6 +41,13 @@ get_url <- function(site_url, dest, sleep = 0.5) {
   
   tryCatch(
     {
+      
+      if (is.na(site_url)) {
+      
+        message("No link provided")
+        return("no link")
+        
+      } else {
       
       ## Try to download the file
       
@@ -54,7 +62,7 @@ get_url <- function(site_url, dest, sleep = 0.5) {
       ## Return success
       return("success")
       # write_log()
-      
+      }
     },
     error = function(cond) {
       message(paste("Error in get_Url():"))
@@ -68,7 +76,7 @@ get_url <- function(site_url, dest, sleep = 0.5) {
         warn <- "invalid URL"
         
         message(warn)
-      }      
+      } 
       
       return(warn)
     },
@@ -94,11 +102,33 @@ get_url <- function(site_url, dest, sleep = 0.5) {
         message(warn)
       }
       
+      if (grepl("503 Service Unavailable", cond)) {
+        
+        warn <- "503 Error"
+        
+        message(warn)
+      }
+      
+      if (grepl("404 Not Found", cond)) {
+        
+        warn <- "404 Error"
+        
+        message(warn)
+      }
+      
+      if (grepl("The operation timed out", cond)) {
+        
+      warn <- "timed out"
+        
+      message(warn)
+      }
+      
       return(warn)
     },
     finally = {
-      
+
       Sys.sleep(sleep)
+      
     }
   )
 }

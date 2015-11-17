@@ -17,15 +17,34 @@
 #'
 #' @export
 
-parse_html <- function(x) {
+parse_dir <- function(source_dir, dest_dir) {
   
-  ## For some reason call readr::read_lines will fail if it is piped. Although
-  ## read_lines works..?
+  stopifnot(
+    dir.exists(source_dir)
+  )
   
-  x <- readr::read_lines(x)
+  if (!dir.exists(dest_dir)) {
+    
+    dir.create(dest_dir)
+    
+  }
   
-  x %>%
-    XML::htmlParse(encoding = "UTF8") %>%
-    return
-
+  files_to_parse <- list.files(
+    source_dir, 
+    pattern = "*.html"
+  )
+  
+  for (i in files_to_parse) {
+    
+    source_file <- file.path(source_dir, i)
+    dest_file <- file.path(dest_dir, i)
+    
+    try(
+      source_file %>% 
+        parse_html %>%
+        clean_string %>%
+        writeLines(dest_file)
+    )
+  }
+  
 }
