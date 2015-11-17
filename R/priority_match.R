@@ -44,13 +44,11 @@ priority_match <- function(x, patterns) {
       ## n > 1
       
       if (sum(match_index) > 0) {
-        ## If there are more than one link with the keyword in, this will simply
-        ## choose the first one with match_index[1]! In future it would be better
-        ## to have a second layer of matching which improves upon the initial
-        ## sift.
-        
-        ## Number of matches could be output from here as it was in the original
-        ## script.
+        ## If there are more than one link with the keyword in, this will 
+        ## return the entire list. They can then be handled later in another
+        ## function. This may not be optimal, but is certainly an improvement
+        ## on the previous version which would just return the first number
+        ## in the list.
         
         #link <- href[match_index[1]][[1]]
         link <- href[match_index]
