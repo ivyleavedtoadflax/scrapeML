@@ -28,17 +28,17 @@ priority_match <- function(x, patterns) {
   tryCatch({
     ## Pull the full <a>...</a> tags
     
-    full_tags <- xpathSApply(x,'//a', saveXML)
+    full_tags <- XML::xpathSApply(x,'//a', XML::saveXML)
     
     ## Pull just the links from the <a></a> tags
     
-    href <- xpathSApply(x,'//a', fun = xmlGetAttr, "href")
+    href <- XML::xpathSApply(x,'//a', fun = XML::xmlGetAttr, "href")
     
     for (i in patterns) {
       ## Go sequentially through the full tags (therefore capturing both the text
       ## and the link itself)
       
-      match_index <- grep(i, full_tags)
+      match_index <- grep(i, full_tags, ignore.case = TRUE)
       
       ## Use a sum here because it is possible for match_index to be a vector of
       ## n > 1
@@ -52,7 +52,8 @@ priority_match <- function(x, patterns) {
         ## Number of matches could be output from here as it was in the original
         ## script.
         
-        link <- href[match_index[1]][[1]]
+        #link <- href[match_index[1]][[1]]
+        link <- href[match_index]
         
         ## Return the link from the match, and then break out of the function
         
