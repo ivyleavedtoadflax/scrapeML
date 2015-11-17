@@ -40,8 +40,8 @@ parse_dir <- function(source_dir, dest_dir) {
     dest_file <- file.path(dest_dir, i)
     
     try(
-      readr::read_lines(source_file) %>%
-        XML::htmlParse(encoding = "UTF8") %>%
+      source_file %>% 
+        parse_html %>%
         clean_string %>%
         writeLines(dest_file)
     )
