@@ -6,7 +6,7 @@ test_that(
     
     ## site_url is not properly formed
     
-expect_error(get_url("http:/www.google.com", tempfile()))
+expect_equal(get_url("http:/www.google.com", tempfile()), "invalid URL")
     
     ## site_url is a vector
     

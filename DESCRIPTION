@@ -1,6 +1,6 @@
 Package: scrapeML
 Title: What the Package Does (one line, title case)
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Matthew", "Upson", , "matthew.upson@education.gsi.gov.uk", role = c("aut", "cre"))
 Description: What the package does (one paragraph)
 Depends:
@@ -15,3 +15,4 @@ Imports:
     httr,
     tm
 RoxygenNote: 5.0.0
+

@@ -1,19 +1,21 @@
-#' @title Clean String
+#' @title Check link
 #'
-#' @description \code{clean_string} clean a string extracted using \code{XML::htmlParse()}
+#' @description \code{check_link} check that a link is properly formatted .
 #'
 #' @param x \code{x} An object, nominally a website loadded with \code{readr::read_lines} and passed to \code{XML::htmlParse()}.
+#' @param website \code{website} Where the root of website is not given in the link, append the link portion to the root given by \code{website}.
 #'
-#' @return An object of class \code{character} with tags, etc removed, ready for building a document term matrix.
+#' @return A character vector of size n>=1 which represent url links.
 #'
 #' @examples
 #'
-#' library(dplyr)
-#' library(readr)
+#' #library(dplyr)
+#' #library(readr)
+#' #library(XML)
 #'
-#' read_lines("http://www.google.co.uk") %>%
-#' htmlParse(encoding = "UTF8") %>%
-#' scrapeML::clean_string
+#' #read_lines("http://www.google.co.uk") %>%
+#' #htmlParse(encoding = "UTF8") %>%
+#' #scrapeML::clean_string
 #'
 #' @export
 

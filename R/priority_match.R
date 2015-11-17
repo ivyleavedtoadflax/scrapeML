@@ -16,9 +16,9 @@
 #'
 #' @examples
 #'
-#' library(scrapeML)
+#' #library(scrapeML)
 #'
-#' get_url("www.google.com",tempfile())
+#' #get_url("www.google.com",tempfile())
 #'
 #' @export
 

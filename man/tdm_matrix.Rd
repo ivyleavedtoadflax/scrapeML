@@ -17,12 +17,13 @@ An object of class \code{character} with tags, etc removed, ready for building a
 }
 \examples{
 
-library(dplyr)
-library(readr)
+#library(dplyr)
+#library(readr)
+#library(XML)
 
-read_lines("http://www.google.co.uk") \%>\% 
-htmlParse(encoding = "UTF8") \%>\%
-scrapeML::clean_string
+#read_lines("http://www.google.co.uk") \%>\% 
+#htmlParse(encoding = "UTF8") \%>\%
+#scrapeML::clean_string
 
 }
 

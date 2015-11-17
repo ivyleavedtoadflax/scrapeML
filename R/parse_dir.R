@@ -1,20 +1,26 @@
-#' @title Clean String
-#'
-#' @description \code{clean_string} clean a string extracted using \code{XML::htmlParse()}
-#'
-#' @param x \code{x} An object, nominally a website loadded with \code{readr::read_lines} and passed to \code{XML::htmlParse()}.
-#'
-#' @return An object of class \code{character} with tags, etc removed, ready for building a document term matrix.
-#'
+#' @title Parse dir
+#'   
+#' @description \code{clean_string} clean a string extracted using
+#'   \code{XML::htmlParse()}
+#'   
+#' @param source_dir \code{source_dir} Source directory in which downloaded html
+#'   files are stored.
+#' @param dest_dir \code{dest_dir} Destination directory in which parsed
+#'   websites will be stored.
+#'   
+#' @return Nothing is returned from the fucntion, but for each input html file a
+#'   parsed version will be produced in the dest_dir folder
+#'   
 #' @examples
-#'
-#' library(dplyr)
-#' library(readr)
-#'
-#' read_lines("http://www.google.co.uk") %>% 
-#' htmlParse(encoding = "UTF8") %>%
-#' scrapeML::clean_string
-#'
+#' 
+#' #library(dplyr)
+#' #library(readr)
+#' #library(XML)
+#' 
+#' #read_lines("http://www.google.co.uk") %>% 
+#' #htmlParse(encoding = "UTF8") %>%
+#' #scrapeML::clean_string
+#' 
 #' @export
 
 parse_dir <- function(source_dir, dest_dir) {

@@ -33,7 +33,7 @@ test_that(
       priority_match("Keyword")
     
     expect_is(success, "character")
-    expect_is(length(success), 2)
+    expect_equal(length(success), 2)
     expect_match(success[1], "http://kw_in_link_text")
     expect_match(success[2], "http://keyword_in_href")
     
