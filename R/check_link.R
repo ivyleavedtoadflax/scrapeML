@@ -24,13 +24,10 @@
 
 check_link <- function(x, website) {
   
-  ## Remove duplicates
-  
-  #x <- unique(x)
-  
   ## Cycle through all of the links returned by priority match
   
   for (i in 1:length(x)) {
+    
     ## Name the link as y
     
     y <- x[i]
@@ -39,7 +36,8 @@ check_link <- function(x, website) {
     ## to the next link. If just one NULL or NA, this should just drop out the
     ## end of the loop
     
-    if (is.null(y) | is.na(y)) {
+    if (is.null(y) | is.na(y) | grepl("javascript", y)) {
+      
       y <- NA
       
       next
@@ -47,22 +45,29 @@ check_link <- function(x, website) {
     } else {
       ## Check for http:// at the beginning of the string
       
-      if (!grepl("^http\\:/{2}.*", y)) {
+      if (!grepl("^http[s]?\\:/{2}.*", y)) {
         
         ## These might either be relative links with a / first, or without, so
         ## check for both possibilities.
         
-        if (grepl("^/.*", y))  {
+        if (y == "No matching links") {
           
-          y <- paste(website, y, sep = "")
+          y <- "No matching links"
           
         } else {
-
-        ## Other option is that there is not "/" at the beginning... So separate
-        ## the two strings with a /
           
-          y <- paste(website, y, sep = "/")
-          
+          if (grepl("^/.*", y))  {
+            
+            y <- paste(website, y, sep = "")
+            
+          } else {
+            
+            ## Other option is that there is not "/" at the beginning... So separate
+            ## the two strings with a /
+            
+            y <- paste(website, y, sep = "/")
+            
+          }
         }
       }
       
@@ -72,6 +77,7 @@ check_link <- function(x, website) {
   }
   
   x <- unique(x)
+  #x <- na.omit(x)
   
   return(x)
 }

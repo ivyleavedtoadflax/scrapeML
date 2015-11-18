@@ -48,9 +48,9 @@ extract_link <- function(x, patterns, root) {
       parse_html %>%
       priority_match(patterns)
     
-    if (link[[1]] != "no matching links") {
+    if (link[[1]] != "No matching links") {
       
-      link <- check_link(link, root)
+      link <- check_link(x = link, website = root)
       
     } 
     
@@ -58,7 +58,7 @@ extract_link <- function(x, patterns, root) {
     
     ## Expect this to be the only error!
     
-    link <- "no website downloaded"
+    link <- "no website found"
     
   }
   
