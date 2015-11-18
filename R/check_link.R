@@ -1,29 +1,36 @@
 #' @title Check link
-#'
+#'   
 #' @description \code{check_link} check that a link is properly formatted .
-#'
-#' @param x \code{x} An object, nominally a website loadded with \code{readr::read_lines} and passed to \code{XML::htmlParse()}.
-#' @param website \code{website} Where the root of website is not given in the link, append the link portion to the root given by \code{website}.
-#'
+#'   
+#' @param x \code{x} An object, nominally a website loadded with
+#'   \code{readr::read_lines} and passed to \code{XML::htmlParse()}.
+#' @param website \code{website} Where the root of website is not given in the
+#'   link, append the link portion to the root given by \code{website}.
+#'   
 #' @return A character vector of size n>=1 which represent url links.
-#'
+#'   
 #' @examples
-#'
+#' 
 #' #library(dplyr)
 #' #library(readr)
 #' #library(XML)
-#'
+#' 
 #' #read_lines("http://www.google.co.uk") %>%
 #' #htmlParse(encoding = "UTF8") %>%
 #' #scrapeML::clean_string
-#'
+#' 
 #' @export
 
 
 check_link <- function(x, website) {
+  
+  ## Remove duplicates
+  
+  #x <- unique(x)
+  
   ## Cycle through all of the links returned by priority match
   
-  for (i in length(x)) {
+  for (i in 1:length(x)) {
     ## Name the link as y
     
     y <- x[i]
@@ -40,17 +47,19 @@ check_link <- function(x, website) {
     } else {
       ## Check for http:// at the beginning of the string
       
-      if (substr(1, 1, 4) != "http") {
+      if (!grepl("^http\\:/{2}.*", y)) {
+        
         ## These might either be relative links with a / first, or without, so
         ## check for both possibilities.
         
-        if (substr(y, 1, 1) == "/")  {
+        if (grepl("^/.*", y))  {
+          
           y <- paste(website, y, sep = "")
           
-          ## Other option is that there is not "/" at the beginning...
-          
         } else {
-          # So separate the two strings with a /
+
+        ## Other option is that there is not "/" at the beginning... So separate
+        ## the two strings with a /
           
           y <- paste(website, y, sep = "/")
           
@@ -61,6 +70,8 @@ check_link <- function(x, website) {
       
     }
   }
+  
+  x <- unique(x)
   
   return(x)
 }
