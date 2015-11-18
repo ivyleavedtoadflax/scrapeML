@@ -24,9 +24,8 @@
 
 get_url <- function(site_url, dest, sleep = 0.5) {
   
-  ## Deal with any errors in the inputs
-  ## Note that if this fails it causes problems!
-  ## Perhaps should be handled in the tryCatch as will raise an error
+  ## Deal with any errors in the inputs Note that if this fails it causes
+  ## problems! Perhaps should be handled in the tryCatch as will raise an error 
   ## that can be handled elegantly.
   
   stopifnot(
@@ -86,8 +85,8 @@ get_url <- function(site_url, dest, sleep = 0.5) {
       ## Choose a return value in case of warning
       
       warn <- "Unhandled warning"
-      
-      if (grepl("unable to resolve", cond)) {
+
+      if (grepl("unable to resolve|Couldn't resolve host name|409 Conflict", cond)) {
         
         warn <- "internet not available"
         

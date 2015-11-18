@@ -2,6 +2,7 @@
 
 export(check_link)
 export(clean_string)
+export(extract_link)
 export(get_url)
 export(parse_dir)
 export(parse_html)
