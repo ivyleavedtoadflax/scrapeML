@@ -1,0 +1,10 @@
+Initial test conditions for get_url() are not wrapped up in
+the tryCatch, and as a result return very uninformative error
+messages if an error is caught here. Much better to push this
+into the try part of the tryCatch and handle the possible errors
+more elegantly.
+
+For example if a non-character vector is passed to ger_url()
+currently all that is returned is:
+
+Error : class(site_url) == "character" is not TRUE
