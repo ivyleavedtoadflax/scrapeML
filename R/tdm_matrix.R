@@ -35,17 +35,17 @@ tdm_matrix <- function(source_dir, stemming = FALSE) {
      
   }
   
-  dtm <- tm::DocumentTermMatrix(mycorpus)
-  m <- as.matrix(dtm)
-  m_names <- row.names(m)
-  d <- m %>%
-    as.data.frame 
+  #dtm <- tm::DocumentTermMatrix(mycorpus)
+  #m <- as.matrix(dtm)
+  #m_names <- row.names(m)
+  #d <- m %>%
+  #  as.data.frame 
   
 #   %>%
 #     cbind(
 #       document = m_names, .
 #       )
 #   
-  return(d)
+  return(mycorpus)
   
 }
