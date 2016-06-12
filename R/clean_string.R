@@ -8,27 +8,31 @@
 #'
 #' @examples
 #'
-#' library(dplyr)
-#' library(readr)
+#' #library(dplyr)
+#' #library(readr)
+#' #library(XML)
 #'
-#' read_lines("http://www.google.co.uk") %>% 
-#' htmlParse(encoding = "UTF8") %>%
-#' scrapeML::clean_string
+#' #read_lines("http://www.google.co.uk") %>% 
+#' #htmlParse(encoding = "UTF8") %>%
+#' #scrapeML::clean_string
 #'
 #' @export
+#' @importFrom magrittr %>%
 
 clean_string <- function(x) {
   
   ## Function uses XML::xpathApply to extract the p and div tags which are most
   ## likely to include details of interest.
   
-  y <- x %>% 
-    XML::xpathApply("//p|//div", saveXML) %>%
+  x %>% 
+    XML::xpathApply("//p|//div", XML::saveXML) %>%
     unlist %>%
     paste(collapse = " ") %>%
     gsub("\\<(a|script|header)(.*?)\\>(.*?)\\<\\/\\1\\>", "", ., perl = TRUE) %>%
     gsub("\\<\\!(.*?)\\>(.*?)\\<\\!(.*?)\\>", "", ., perl = TRUE) %>%
     gsub("\\<\\!\\[CDATA(.*?)\\>", "", ., perl = TRUE) %>%
-    gsub("\\<(.*?)\\>|\\n|\\t|nbsp;|&amp;", "", ., perl = TRUE)
+    gsub("\\<(.*?)\\>|\\n|\\t|nbsp;|&amp;", "", ., perl = TRUE) -> y
+  
+  return(y)
   
 }
